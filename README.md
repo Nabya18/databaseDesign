@@ -22,6 +22,19 @@ with Session(engine) as session:
 obj = session.query(class_table).all()
 ```
 
+# Menjalankan Aplikasi
+## 1. Membuat dan menjalankan environment
+```angular2html
+# membuat environment
+python -m venv venv
+# menjalankan environment
+.venv/Scripts/activate
+```
+## 2. Menjalankan aplikasi
+```angular2html
+python seed.py
+```
+
 ## Note
 1. back_populates = jabat tangan dua arah: “atribut saya berpasangan dengan atribut itu di kelas sebelah.”
 2. secondary = jembatan many-to-many: “lewat tabel ini kita terhubung.”

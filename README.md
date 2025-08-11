@@ -23,25 +23,33 @@ obj = session.query(class_table).all()
 ```
 
 # Menjalankan Aplikasi
-## 1. Membuat dan menjalankan environment
+## Create Virtual Environment
 ```angular2html
-# membuat environment
-python -m venv venv
-# menjalankan environment
-.venv/Scripts/activate
+# Create virtual environment
+python -m venv venv         #windows
+python3 -m venv venv        #mac/linux
+# Activate virtual environment
+venv\Scripts\activate       #windows
+source venv/bin/activate    #mac/linux
 ```
-## 2. Menjalankan aplikasi
+
+## Install Dependencies
+```angular2html
+pip install -r requirements.txt
+```
+
+## Run the Program
 ```angular2html
 python seed.py
 ```
 
-## Note
-1. back_populates = jabat tangan dua arah: “atribut saya berpasangan dengan atribut itu di kelas sebelah.”
-2. secondary = jembatan many-to-many: “lewat tabel ini kita terhubung.”
-3. Pakai secondary hanya bila tabel jembatan tanpa kolom tambahan.
-4. Jika ada kolom tambahan → gunakan association object (kelas terpisah), bukan secondary.
+## Notes
+1. back_populates = two-way handshake: "my attribute is paired with that attribute in the other class."
+2. secondary = many-to-many bridge: "we connect through this table."
+3. Use secondary only when the bridge table has no additional columns.
+4. If there are additional columns → use association object (separate class), not secondary.
 
-## Kesalahan Umum
-1. back_populates tidak cocok namanya antara dua sisi → relasi tidak sinkron.
-2. Mengisi secondary dengan class ORM (salah). secondary harus Table/selectable, bukan mapped class.
-3. Mencampur pola secondary dan association object pada tabel yang sama tanpa viewonly/association_proxy → duplikasi/overlap warning.
+## Common Mistakes
+1. back_populates names don't match between two sides → relationship not synchronized.
+2. Filling secondary with ORM class (wrong). secondary must be Table/selectable, not mapped class.
+3. Mixing secondary pattern and association object on the same table without viewonly/association_proxy → duplication/overlap warning.
